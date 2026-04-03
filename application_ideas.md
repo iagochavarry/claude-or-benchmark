@@ -139,3 +139,38 @@ Support ticket system with customers, agents, and admins. Tests role-based permi
 - Admins: view all tickets, assign/reassign agents, manage users and tags
 - Status workflow: open → in_progress → waiting → resolved → closed (enforced transitions)
 - Filtering: by status, priority, assignee, tag
+
+---
+
+## Frameworks
+
+Mix and match any combination below when filling in `prompt-template.md`. All stacks use Python or TypeScript/JS.
+
+4 × 4 × 4 = **64 possible stack combinations**.
+
+### Frontend
+
+| Framework | Language | Notes |
+|---|---|---|
+| React 18 | TypeScript | Component model, hooks, massive ecosystem |
+| Vue 3 | TypeScript | Composition API, simpler learning curve |
+| Angular 17 | TypeScript | Opinionated, batteries-included, RxJS |
+| Svelte 4 | TypeScript | Compiler-based, minimal runtime, different paradigm |
+
+### Backend
+
+| Framework | Language | Notes |
+|---|---|---|
+| Express | Node.js / TypeScript | Minimal, flexible, most common |
+| NestJS | Node.js / TypeScript | Opinionated, decorators, DI, modular |
+| FastAPI | Python | Async, auto-docs, type hints |
+| Django REST | Python | Batteries-included, ORM, admin panel |
+
+### Database
+
+| Database | Type | Notes |
+|---|---|---|
+| PostgreSQL | Relational | Full-featured, JSON support |
+| MySQL | Relational | Widely deployed, simpler |
+| MongoDB | Document | Schema-flexible, different query patterns |
+| SQLite | Embedded relational | Zero-config, tests file-based persistence |
