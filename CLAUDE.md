@@ -6,27 +6,39 @@ This project benchmarks different Claude model variations by:
 
 ## Structure
 
+- `prompt-template.md` — Stack-agnostic bootstrap prompt. Fill in the Stack/Application/Requirements sections per run.
+- `.claude/commands/judge.md` — Judge agent prompt. Invoke with `/project:judge` in Claude Code.
+- `solution/` — Place generated implementations here for judging.
+
+## Branching Strategy
+
+Each application variation lives on its own branch:
+
 ```
-app/
-  {APP_NAME}/
-    {VARIATION_NAME}/
-      prompt-template.md   # filled-in prompt for this run
-      solution/             # generated implementation
+app/<application_name>
 ```
 
-- `app/APP_NAME/VARIATION_NAME/` — One directory per app + model/harness combination.
-- `prompt-template.md` (root) — Base template. Copy into each variation directory and fill in.
-- `.claude/commands/judge.md` — Judge agent. Invoke with `/project:judge` in Claude Code.
+Examples: `app/task-manager`, `app/ecommerce`, `app/blog-platform`
 
-### Naming Convention
+## Solution Naming
 
-- **APP_NAME**: the application domain (e.g. `social_media`, `task_manager`)
-- **VARIATION_NAME**: the model or harness that generated it (e.g. `claude_code_sonnet`, `claude_code_opus`, `claude_code_or_kimi`)
+Inside `solution/`, each agent's output goes in a subfolder named after the agent that generated it:
+
+```
+solution/<AGENT_NAME>/
+```
+
+Naming convention: `cc_<model>` for Claude Code, `cc_or_<model>` for Claude Code via OpenRouter.
+
+Examples:
+- `solution/cc_sonnet/` — Claude Code with Sonnet
+- `solution/cc_opus/` — Claude Code with Opus
+- `solution/cc_or_kimi/` — Claude Code via OpenRouter with Kimi
 
 ## Workflow
 
-1. Create `app/{APP_NAME}/{VARIATION_NAME}/`.
-2. Copy `prompt-template.md` into that directory and fill in Stack/Application sections.
+1. Create a branch: `git checkout -b app/<application_name>`
+2. Fill in `prompt-template.md` sections for your target stack and app.
 3. Feed the prompt to the model variation being tested.
-4. Place the generated code in `solution/` within that directory.
+4. Place the generated code in `solution/<AGENT_NAME>/`.
 5. Run `/project:judge` to score the implementation.
